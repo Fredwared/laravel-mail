@@ -27,5 +27,7 @@ Route::get('/messages/sent', 'MessageController@sent');
 
 Route::get('/messages/drafts', 'MessageController@drafts');
 
+// Extra routes MUST be above this Route::resource line, or else it won't get read
+// You put your most specific routes at the top, and the most general ones at the bottom
 Route::resource('/messages', 'MessageController');
 
