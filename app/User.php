@@ -28,11 +28,16 @@ class User extends Authenticatable
     ];
 
     public function sent() {
-        return $this->hasMany('App\Message', 'sender_id')->where('sent_at', '!=', null);
+        return $this
+                ->hasMany('App\Message', 'sender_id')
+                ->where('sender_id', '=', \Auth::user()->id)
+                ->where('sent_at', '!=', null);
     }
 
     public function drafts() {
-        return $this->hasMany('App\Message', 'sender_id')->where('sent_at', '=', null);
+        return $this
+                ->hasMany('App\Message', 'sender_id')
+                ->where('sent_at', '=', null);
     }
 
     public function received() {
